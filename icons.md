@@ -5,9 +5,14 @@ Two icon sources, both in the same wobbly scribble style, both used the same way
 1. **Core sprite** — 19 hand-made icons, small enough to paste inline (below).
    Covers most mockups; prefer it when it has what you need.
 2. **Full set** — 1745 icons covering the complete [Lucide](https://lucide.dev)
-   set (ISC license), machine-redrawn in the scribble style. Lives in the
-   sprite file `lofi-icons.svg` (in the skill package: `assets/lofi-icons.svg`).
+   set, machine-redrawn in the scribble style. Lives in the sprite file
+   `lofi-icons.svg` (in the skill package: `assets/lofi-icons.svg`).
    Browse it visually via `lofi-icons.html`.
+
+Licensing: the full set derives from Lucide (ISC). The required copyright and
+permission notice is embedded as a comment at the top of the sprite file —
+keep that comment when redistributing the sprite (copying individual
+`<symbol>`s into a mockup is fine without it).
 
 ## Usage
 

@@ -416,9 +416,34 @@ if (errors.length) {
   console.error('ERRORS:\n' + errors.join('\n'));
 }
 const version = JSON.parse(readFileSync(new URL('./node_modules/lucide-static/package.json', import.meta.url), 'utf8')).version;
+// The full ISC notice is embedded so it travels with every copy of this file,
+// as the license requires.
 const sprite = `<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-<!-- lofi-icons: ${symbols.length} scribble-style icons derived from Lucide v${version} (https://lucide.dev, ISC license).
-     Hand-drawn conversion for lofi.css. Icons are stroke-only; style them with the .lf-icon class. -->
+<!--
+lofi-icons: ${symbols.length} scribble-style icons for lofi.css (https://github.com/hrr-amboss/lofi.css).
+Icon shapes derived from Lucide v${version} (https://lucide.dev), hand-drawn conversion by lofi.css.
+Icons are stroke-only; style them with the .lf-icon class.
+
+Lucide is used under the ISC License:
+
+Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part
+of Feather (MIT). All other copyright (c) for Lucide are held by Lucide
+Contributors 2022.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+
+The scribble conversion itself is MIT licensed (c) 2026 Hannes Roessler.
+-->
 ${symbols.join('\n')}
 </svg>
 `;

@@ -1,6 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-<!-- lofi-icons: 1745 scribble-style icons derived from Lucide v1.23.0 (https://lucide.dev, ISC license).
-     Hand-drawn conversion for lofi.css. Icons are stroke-only; style them with the .lf-icon class. -->
+<!--
+lofi-icons: 1745 scribble-style icons for lofi.css (https://github.com/hrr-amboss/lofi.css).
+Icon shapes derived from Lucide v1.23.0 (https://lucide.dev), hand-drawn conversion by lofi.css.
+Icons are stroke-only; style them with the .lf-icon class.
+
+Lucide is used under the ISC License:
+
+Copyright (c) for portions of Lucide are held by Cole Bemis 2013-2022 as part
+of Feather (MIT). All other copyright (c) for Lucide are held by Lucide
+Contributors 2022.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+
+The scribble conversion itself is MIT licensed (c) 2026 Hannes Roessler.
+-->
   <symbol id="lf-i-a-arrow-down" viewBox="0 0 24 24"><path d="M13.92 11.91Q15.4 14.12 18.17 15.94Q20.55 14.3 22.2 12.14 M17.81 16.11Q18.37 12.09 17.89 7 M2.12 16.09Q3.21 11.02 6.15 6.35A0.5 0.5 0 0 1 6.9 6.24Q7.98 10.97 11.04 16.01 M3.15 12.8Q7 12.34 9.83 13.04"/></symbol>
   <symbol id="lf-i-a-arrow-up" viewBox="0 0 24 24"><path d="M14.18 10.81Q15.48 8.67 17.96 6.99Q19.42 8.94 21.86 10.96 M17.92 15.86Q18.56 12.12 17.81 7.16 M1.86 15.96Q4.85 10.81 6.05 6.13A0.5 0.5 0 0 1 7.03 6.23Q9.71 11.26 10.94 15.86 M3.12 12.86Q5.89 12.57 9.57 12.97"/></symbol>
   <symbol id="lf-i-a-large-small" viewBox="0 0 24 24"><path d="M15.18 15.96Q15.95 12.17 17.61 8.58A1.02 1.02 1 0 1 19.37 8.67Q21.02 11.51 21.8 15.86 M15.7 14.13Q18.6 14.6 21.33 14.07 M1.91 16.19Q3.06 11.28 6.08 6.39A0.5 0.5 0 0 1 6.96 6.37Q8.5 11.36 11.12 16.09 M3.24 13.04Q6.15 13.42 9.55 12.87"/></symbol>
