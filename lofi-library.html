@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>lofi.css — component library</title>
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="lofi.css">
 <style>
   body { margin: 0; }
@@ -31,10 +30,9 @@
     <div class="lf-card lf-stack">
       <ol>
         <li>Download <a href="lofi.css" download>lofi.css</a> and place it next to your HTML file.</li>
-        <li>Add the fonts and stylesheet to your <code>&lt;head&gt;</code>, and the <code>lofi</code> class to <code>&lt;body&gt;</code>:</li>
+        <li>Add the stylesheet to your <code>&lt;head&gt;</code>, and the <code>lofi</code> class to <code>&lt;body&gt;</code> — the handwriting fonts are embedded in the CSS, so nothing is loaded from anywhere else:</li>
       </ol>
-<pre><code>&lt;link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;family=Caveat:wght@500;700&amp;display=swap" rel="stylesheet"&gt;
-&lt;link rel="stylesheet" href="lofi.css"&gt;
+<pre><code>&lt;link rel="stylesheet" href="lofi.css"&gt;
 
 &lt;body class="lofi"&gt; ... &lt;/body&gt;</code></pre>
       <ol start="3">
@@ -436,7 +434,7 @@ function sketch(el) {
       </div>
       <div class="lf-col">
         <p class="lf-label">iframe (srcdoc)</p>
-        <iframe title="demo" width="200" height="110" srcdoc="&lt;link href='https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap' rel='stylesheet'&gt;&lt;body style=&quot;font-family:'Patrick Hand','Segoe Print','Comic Sans MS',cursive;background:#fafafa;color:#1f1f1f;margin:10px&quot;&gt;iframe content&lt;/body&gt;"></iframe>
+        <iframe title="demo" width="200" height="110" srcdoc="&lt;body style=&quot;font-family:'Segoe Print','Comic Sans MS',cursive;background:#fafafa;color:#1f1f1f;margin:10px&quot;&gt;iframe content&lt;/body&gt;"></iframe>
       </div>
       <div class="lf-col">
         <p class="lf-label">canvas / video / audio</p>
@@ -504,10 +502,10 @@ function sketch(el) {
 
   <footer>
     <hr class="lf-hr-wavy lf-hr">
-    <p class="lf-muted">lofi.css · pure CSS lo-fi kit · fonts: Patrick Hand + Caveat (Google Fonts)</p>
+    <p class="lf-muted">lofi.css · pure CSS lo-fi kit · fonts: Patrick Hand + Caveat, embedded in the CSS (SIL Open Font License) — no external requests, nothing sent to Google</p>
     <p class="lf-muted">Claude skill: <a href="lofi-mockups/SKILL.md">lofi-mockups/SKILL.md</a> · installable package: <a href="lofi-mockups.skill">lofi-mockups.skill</a><br>
     Skill rules in short: strictly HTML + lofi.css + text · grayscale only · <strong>no emojis</strong> (typographic glyphs like ✓ ✗ → are fine) · no JS, no external assets.</p>
-    <p class="lf-muted">Created by Hannes Rössler, 2026 — with help from Claude Fable 5.<br>
+    <p class="lf-muted">A private side project by Hannes Rössler, 2026 — built with help from Claude Fable 5. Not affiliated with any employer or organization.<br>
     <a href="https://github.com/hrr-amboss/lofi.css">GitHub</a> · <a href="https://www.linkedin.com/in/hannes-r%C3%B6ssler-50a406155/">LinkedIn</a></p>
     <p class="lf-muted"><a href="https://github.com/hrr-amboss/lofi.css/blob/main/LICENSE">MIT licensed</a> · icon shapes in the full set derived from <a href="https://lucide.dev">Lucide</a> (ISC license, notice embedded in the sprite file)</p>
   </footer>

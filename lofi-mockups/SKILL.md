@@ -10,7 +10,7 @@ Produce lo-fi, hand-drawn-looking screen mockups as a single HTML file that link
 ## Hard rules (never violate these)
 
 1. **NO EMOJIS. Anywhere.** Not in headings, buttons, labels, notes, placeholder text, or comments. This is a strict rule with no exceptions. Plain typographic glyphs are the only permitted symbols: `✓ ✗ → ← ↑ ↓ ↖ ↗ ↘ ↙ ○ ● – ×`. If you feel the urge to add an emoji, use a word instead ("Note:", "Warning:", "Idea:"). For pictorial icons, use the built-in inline SVG sprite (read `references/icons.md` when a mockup needs icons) — never emojis.
-2. **Strictly HTML + lofi.css + text.** No JavaScript. No external images, fonts (beyond the two Google Fonts imports below), icon libraries, or CDN frameworks. No Tailwind, no Bootstrap, no Rough.js. Icons come from the bundled scribble sprites only: the 19-icon core sprite in `references/icons.md`, plus the full 1745-icon set (the complete Lucide catalog redrawn in scribble style) in `assets/lofi-icons.svg` — grep it by name and copy the needed `<symbol>` lines inline (lookup instructions in `references/icons.md`). Only if an icon exists in neither, draw a new inline `<symbol>` in the same wobbly-stroke style rather than importing anything.
+2. **Strictly HTML + lofi.css + text.** No JavaScript. No external images, fonts, icon libraries, or CDN frameworks — the handwriting fonts are embedded inside lofi.css, so a finished mockup makes zero network requests. No Tailwind, no Bootstrap, no Rough.js. Icons come from the bundled scribble sprites only: the 19-icon core sprite in `references/icons.md`, plus the full 1745-icon set (the complete Lucide catalog redrawn in scribble style) in `assets/lofi-icons.svg` — grep it by name and copy the needed `<symbol>` lines inline (lookup instructions in `references/icons.md`). Only if an icon exists in neither, draw a new inline `<symbol>` in the same wobbly-stroke style rather than importing anything.
 3. **Grayscale only.** Never introduce a color. All colors come from the CSS custom properties in lofi.css (`--lf-*`). If you need emphasis, use lightness (darker = more important), border style (solid / dashed / double), or texture (stripes, dots) — never hue.
 4. **No custom CSS beyond trivial layout.** Inline `style` attributes are allowed only for widths, heights, spacing, and grayscale values already in the palette. Do not write new component styles; if a component seems missing, compose it from existing classes and bare elements.
 5. **Images are placeholders.** Use `.lf-placeholder` (optionally `.lf-x` for the crossed-out box) or inline grayscale SVG. Never embed real photos or logos.
@@ -26,7 +26,6 @@ Every mockup starts from this shell:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mockup — [screen name]</title>
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="lofi.css">
 </head>
 <body class="lofi">

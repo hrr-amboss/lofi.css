@@ -21,7 +21,6 @@ const html = `<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>lofi icons — full scribble icon set</title>
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="lofi.css">
 <style>
   body { margin: 0; }

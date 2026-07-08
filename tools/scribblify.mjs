@@ -442,7 +442,8 @@ LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 
-The scribble conversion itself is MIT licensed (c) 2026 Hannes Roessler.
+The scribble conversion itself is MIT licensed (see the LICENSE file in the
+lofi.css repository). lofi.css is a private side project.
 -->
 ${symbols.join('\n')}
 </svg>
