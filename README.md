@@ -2,13 +2,15 @@
 
 A tiny hand-drawn wireframe kit in a single CSS file — plus 1,745 scribble icons and a Claude skill.
 
-<img src="docs/preview.svg" alt="Sample of the scribble icon set" width="368">
-
 lofi.css gives plain HTML the paper-scribble look of Excalidraw or tldraw: wobbly borders, marker highlights, squiggly underlines, handwritten fonts. It exists so that lo-fi mockups stay lo-fi — stakeholders discuss **structure and flow**, not visual polish. Grayscale only, no JavaScript, no dependencies, no external requests (the fonts are embedded in the CSS), deliberately imperfect.
+
+<img src="docs/example.png" alt="Example mockup built with lofi.css: a hand-drawn two-screen subscription flow with nav, cards, table, badges, icons, and margin annotations" width="820">
+
+The mockup above is [example.html](example.html) — plain semantic HTML plus this one stylesheet. No JavaScript, no images, no build step.
 
 This is a private side project, built in personal time — not affiliated with, or endorsed by, any employer or organization.
 
-**Live demo:** coming soon — until then, clone the repo and open `lofi-library.html` in a browser.
+**Live demo:** coming soon — until then, clone the repo and open `example.html` (the mockup above) or `lofi-library.html` (the component library) in a browser.
 
 ## Quick start
 
@@ -38,6 +40,8 @@ The full component reference with live examples is in `lofi-library.html`.
 
 ## Icons
 
+<img src="docs/preview.svg" alt="Sample of the scribble icon set" width="368">
+
 Two sources, one style, one way to use them:
 
 - **Core sprite** — 19 hand-made scribble icons as an inline SVG sprite (see [icons.md](icons.md)). Small enough to paste into any mockup.
@@ -60,6 +64,17 @@ npm install
 npm run build-icons   # rewrites lofi-icons.svg, lofi-icons.html, and the skill asset
 ```
 
+## Deploying the demo site
+
+Everything is static. To publish (e.g. [Netlify Drop](https://app.netlify.com/drop)):
+
+```sh
+cd tools
+npm run build-site   # assembles the site into dist/
+```
+
+Then drag the `dist/` folder onto Netlify Drop. The site root redirects to the component library; the example mockup is at `/example.html`, the icon gallery at `/lofi-icons.html`.
+
 ## Claude skill
 
 `lofi-mockups.skill` packages the CSS, both icon sets, and house rules (strictly HTML + lofi.css, grayscale only, no emojis, no JS) so Claude produces consistent mockups from prompts like *"sketch the onboarding flow"*. Install the `.skill` file in Claude, or read the plain source at [lofi-mockups/SKILL.md](lofi-mockups/SKILL.md).
@@ -68,6 +83,7 @@ npm run build-icons   # rewrites lofi-icons.svg, lofi-icons.html, and the skill 
 
 ```
 lofi.css               the framework — this is all you need
+example.html           example mockup (the screenshot above)
 lofi-library.html      component library / documentation
 lofi-icons.svg         full icon sprite (1,745 symbols)
 lofi-icons.html        searchable icon gallery (click to copy)
