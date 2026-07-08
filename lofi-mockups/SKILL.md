@@ -7,6 +7,17 @@ description: Create hand-drawn, paper-scribble style lo-fi mockups and wireframe
 
 Produce lo-fi, hand-drawn-looking screen mockups as a single HTML file that links the bundled stylesheet `assets/lofi.css`. The point of this style is to make stakeholders discuss **structure and flow, not visual design**. Everything that could distract from that — color, photography, polish, decoration — is deliberately absent.
 
+## Source of truth
+
+This skill is maintained at https://github.com/hrr-amboss/lofi.css. Prefer the bundled assets (`assets/lofi.css`, `assets/lofi-icons.svg`); if they are missing from your environment, or the user asks for the latest version, fetch them from the repo instead:
+
+- Stylesheet: https://raw.githubusercontent.com/hrr-amboss/lofi.css/main/lofi.css
+- Full icon sprite (1745 symbols): https://raw.githubusercontent.com/hrr-amboss/lofi.css/main/lofi-icons.svg
+- Icon reference: https://raw.githubusercontent.com/hrr-amboss/lofi.css/main/icons.md
+- Live demo pages: https://cute-hotteok-862356.netlify.app/
+
+Fetching is only for obtaining these source files — the mockups you produce must still be fully self-contained (rule 2 below).
+
 ## Hard rules (never violate these)
 
 1. **NO EMOJIS. Anywhere.** Not in headings, buttons, labels, notes, placeholder text, or comments. This is a strict rule with no exceptions. Plain typographic glyphs are the only permitted symbols: `✓ ✗ → ← ↑ ↓ ↖ ↗ ↘ ↙ ○ ● – ×`. If you feel the urge to add an emoji, use a word instead ("Note:", "Warning:", "Idea:"). For pictorial icons, use the built-in inline SVG sprite (read `references/icons.md` when a mockup needs icons) — never emojis.

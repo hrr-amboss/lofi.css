@@ -4,13 +4,13 @@ A tiny hand-drawn wireframe kit in a single CSS file — plus 1,745 scribble ico
 
 lofi.css gives plain HTML the paper-scribble look of Excalidraw or tldraw: wobbly borders, marker highlights, squiggly underlines, handwritten fonts. It exists so that lo-fi mockups stay lo-fi — stakeholders discuss **structure and flow**, not visual polish. Grayscale only, no JavaScript, no dependencies, no external requests (the fonts are embedded in the CSS), deliberately imperfect.
 
-<img src="docs/example.png" alt="Example mockup built with lofi.css: a hand-drawn two-screen subscription flow with nav, cards, table, badges, icons, and margin annotations" width="820">
+<a href="https://cute-hotteok-862356.netlify.app/example.html"><img src="docs/example.png" alt="Example mockup built with lofi.css: a hand-drawn two-screen subscription flow with nav, cards, table, badges, icons, and margin annotations" width="820"></a>
 
-The mockup above is [example.html](example.html) — plain semantic HTML plus this one stylesheet. No JavaScript, no images, no build step.
+The mockup above is [example.html](https://cute-hotteok-862356.netlify.app/example.html) — plain semantic HTML plus this one stylesheet. No JavaScript, no images, no build step.
 
 This is a private side project, built in personal time — not affiliated with, or endorsed by, any employer or organization.
 
-**Live demo:** coming soon — until then, clone the repo and open `example.html` (the mockup above) or `lofi-library.html` (the component library) in a browser.
+**Live demo:** [component library](https://cute-hotteok-862356.netlify.app/) · [example mockup](https://cute-hotteok-862356.netlify.app/example.html) · [icon gallery](https://cute-hotteok-862356.netlify.app/lofi-icons.html)
 
 ## Why lo-fi, now of all times?
 
