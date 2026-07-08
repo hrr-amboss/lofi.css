@@ -12,6 +12,20 @@ This is a private side project, built in personal time — not affiliated with, 
 
 **Live demo:** coming soon — until then, clone the repo and open `example.html` (the mockup above) or `lofi-library.html` (the component library) in a browser.
 
+## Why lo-fi, now of all times?
+
+AI made high fidelity cheap. Any idea can be turned into a pixel-perfect, branded, production-looking UI in one prompt — so that's what everyone does, all the time, for everything.
+
+But high fidelity is misleading, precisely because it's no longer earned:
+
+- **Polish reads as certainty.** A finished-looking screen invites finished-level feedback — people debate button colors and spacing on a concept whose *flow* nobody has agreed on yet.
+- **It obfuscates where a tool is in its lifecycle.** When the day-one draft and the shipped product look equally done, screenshots stop telling you what's decided, what's a guess, and what's still up for grabs.
+- **It makes things specific too early.** Every hifi detail is an implicit decision someone will anchor on, cite, or build against — whether you meant it or not.
+
+lofi.css is the counterweight: a format for **EARLY**. When PMs, engineers, and designers are still figuring out what a thing *is*, the deliberate roughness is information — it says "this is a proposal, argue with the structure, not the styling", and it keeps ideas exactly as unspecific as they actually are.
+
+And it's deliberately **AI-first**: the bundled Claude skill turns websites, feature descriptions, meeting notes, or a photo of a whiteboard scribble into this format in one prompt — with the constraints (grayscale, no polish, no JavaScript, annotations encouraged) enforced by the skill, not by discipline.
+
 ## Quick start
 
 1. Copy `lofi.css` next to your HTML file.
