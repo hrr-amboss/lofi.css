@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lofi.css — component library</title>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lofi.css">
+<style>
+  body { margin: 0; }
+  .demo { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+  .demo-section { margin-bottom: 3rem; }
+  .demo-section > h2 { margin-top: 0; }
+  .swatch { display:inline-flex; flex-direction:column; align-items:center; gap:.3em; margin-right:1em; font-size:.8rem; }
+  .swatch span { width:52px; height:52px; border:2.5px solid var(--lf-line); border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%; }
+</style>
+</head>
+<body class="lofi">
+<div class="demo">
+
+  <!-- ============ HEADER ============ -->
+  <header class="demo-section">
+    <h1>lofi.css <span class="lf-badge lf-badge-accent">v0.1</span></h1>
+    <p>A tiny hand-drawn wireframe framework in a single CSS file. Paper-scribble look in the spirit of Excalidraw and tldraw — wobbly borders, <mark>marker highlights</mark>, <span class="lf-underline">squiggly underlines</span> — for lo-fi mockups, prototypes, and docs where you want people to discuss <em>structure and flow</em>, not visual polish.</p>
+    <p class="lf-muted">Grayscale only. No JavaScript. No dependencies. Bare HTML elements are styled automatically — classes are optional extras. <span class="lf-strike">Pixel-perfect</span> Deliberately imperfect.</p>
+  </header>
+
+  <!-- ============ GET STARTED ============ -->
+  <section class="demo-section">
+    <h2>Get started</h2>
+    <div class="lf-card lf-stack">
+      <ol>
+        <li>Download <a href="lofi.css" download>lofi.css</a> and place it next to your HTML file.</li>
+        <li>Add the fonts and stylesheet to your <code>&lt;head&gt;</code>, and the <code>lofi</code> class to <code>&lt;body&gt;</code>:</li>
+      </ol>
+<pre><code>&lt;link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;family=Caveat:wght@500;700&amp;display=swap" rel="stylesheet"&gt;
+&lt;link rel="stylesheet" href="lofi.css"&gt;
+
+&lt;body class="lofi"&gt; ... &lt;/body&gt;</code></pre>
+      <ol start="3">
+        <li>Write plain semantic HTML. Headings, lists, tables, quotes, code, forms, <code>details</code>, <code>dialog</code> — everything below gets the sketchy treatment with zero classes. Use the <code>.lf-*</code> classes for components (cards, buttons, sticky notes, annotations).</li>
+      </ol>
+      <div class="lf-note">Using Claude? Install <a href="lofi-mockups.skill" download>lofi-mockups.skill</a> (bundles the CSS) or read the plain <a href="lofi-mockups/SKILL.md">SKILL.md</a>. The skill enforces the house rules: strictly HTML + this CSS + text, grayscale only, and no emojis.</div>
+    </div>
+  </section>
+
+  <!-- ============ TYPOGRAPHY ============ -->
+  <section class="demo-section">
+    <h2>Typography</h2>
+    <div class="lf-card">
+      <h1>Heading one (Caveat)</h1>
+      <h2>Heading two</h2>
+      <h3>Heading three</h3>
+      <p>Body text uses Patrick Hand. Here's a <a href="#">sketchy link</a>, some <mark>highlighted text</mark>, a <span class="lf-strike">crossed-out mistake</span>, and a <span class="lf-underline">wavy underline</span>.</p>
+      <p><small>Small muted caption text for annotations and hints.</small></p>
+    </div>
+  </section>
+
+  <!-- ============ COLORS ============ -->
+  <section class="demo-section">
+    <h2>Palette</h2>
+    <div class="swatch"><span style="background:var(--lf-paper)"></span>paper</div>
+    <div class="swatch"><span style="background:var(--lf-ink)"></span>ink</div>
+    <div class="swatch"><span style="background:var(--lf-accent)"></span>accent</div>
+    <div class="swatch"><span style="background:var(--lf-danger)"></span>danger</div>
+    <div class="swatch"><span style="background:var(--lf-ok)"></span>ok</div>
+    <div class="swatch"><span style="background:var(--lf-highlight)"></span>highlight</div>
+    <div class="swatch"><span style="background:var(--lf-note)"></span>note</div>
+    <div class="swatch"><span style="background:var(--lf-fill)"></span>fill</div>
+  </section>
+
+  <!-- ============ BUTTONS ============ -->
+  <section class="demo-section">
+    <h2>Buttons</h2>
+    <div class="lf-row">
+      <button class="lf-btn">Default</button>
+      <button class="lf-btn lf-btn-primary">Primary action</button>
+      <button class="lf-btn lf-btn-danger">Delete</button>
+      <button class="lf-btn lf-btn-ghost">Ghost / secondary</button>
+    </div>
+    <p class="lf-muted" style="margin-top:.6em">Note: sibling buttons get different wobble shapes automatically via nth-of-type.</p>
+  </section>
+
+  <!-- ============ FORMS ============ -->
+  <section class="demo-section">
+    <h2>Form elements</h2>
+    <div class="lf-card lf-stack">
+      <div>
+        <label class="lf-label" for="name">Project name</label>
+        <input class="lf-input" id="name" placeholder="Type here...">
+      </div>
+      <div>
+        <label class="lf-label" for="dx">Category</label>
+        <select class="lf-select" id="dx">
+          <option>Design</option>
+          <option>Engineering</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div>
+        <label class="lf-label" for="notes">Notes</label>
+        <textarea class="lf-textarea" id="notes" placeholder="Free text..."></textarea>
+      </div>
+      <div class="lf-row">
+        <label class="lf-check"><input type="checkbox" checked><span class="box"></span> Checkbox (checked)</label>
+        <label class="lf-check"><input type="checkbox"><span class="box"></span> Checkbox</label>
+      </div>
+      <div class="lf-row">
+        <label class="lf-radio"><input type="radio" name="r" checked><span class="dot"></span> Option A</label>
+        <label class="lf-radio"><input type="radio" name="r"><span class="dot"></span> Option B</label>
+      </div>
+      <div class="lf-row">
+        <label class="lf-toggle"><input type="checkbox" checked><span class="track"></span> Toggle on</label>
+        <label class="lf-toggle"><input type="checkbox"><span class="track"></span> Toggle off</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTAINERS ============ -->
+  <section class="demo-section">
+    <h2>Cards, notes &amp; zones</h2>
+    <div class="lf-row">
+      <div class="lf-col lf-card">
+        <h3>A card</h3>
+        <p>Cards alternate wobble direction and shape when they're siblings.</p>
+        <button class="lf-btn lf-btn-primary">Action</button>
+      </div>
+      <div class="lf-col lf-card lf-double">
+        <h3>Double-stroke card</h3>
+        <p>Add <code>.lf-double</code> for the Excalidraw "pen went over it twice" look.</p>
+      </div>
+      <div class="lf-col">
+        <div class="lf-note">Sticky note — good for annotations, open questions, and "TODO: ask legal" moments.</div>
+      </div>
+    </div>
+    <br>
+    <div class="lf-zone">Dashed zone — drop area, empty state, or "content goes here" region</div>
+  </section>
+
+  <!-- ============ PLACEHOLDERS ============ -->
+  <section class="demo-section">
+    <h2>Placeholders &amp; avatars</h2>
+    <div class="lf-row">
+      <div class="lf-col lf-placeholder lf-x" style="min-height:160px">image</div>
+      <div class="lf-col lf-placeholder" style="min-height:160px">chart / graph</div>
+      <div class="lf-col">
+        <div class="lf-row" style="align-items:center">
+          <span class="lf-avatar">AB</span>
+          <span class="lf-avatar" style="background:var(--lf-note)">CD</span>
+          <span class="lf-avatar" style="background:#e2e2e2">+3</span>
+        </div>
+        <p class="lf-muted" style="margin-top:.6em">Avatars with initials</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ICONS ============ -->
+  <section class="demo-section">
+    <h2>Icons</h2>
+    <!-- lofi icon sprite: inline once per page, reference via <use> -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="lf-i-search" viewBox="0 0 24 24"><path d="M10.5 5 Q15.5 5.4 15.8 10.4 Q15.5 15.5 10.4 15.8 Q5.4 15.5 5.2 10.5 Q5.5 5.5 10.5 5 Z M15 15 Q17.4 17.1 19.3 19.3"/></symbol>
+      <symbol id="lf-i-menu" viewBox="0 0 24 24"><path d="M4 7 Q12 6.5 20 7.1 M4.3 12 Q12 11.6 19.7 12.2 M4 17 Q12 16.6 20.2 17"/></symbol>
+      <symbol id="lf-i-home" viewBox="0 0 24 24"><path d="M4 11.5 Q11.8 4.3 12.2 4.5 L20 11.3 M6 10.5 L6.2 19.5 Q12 20 17.9 19.4 L18 10.6 M10 19.4 L10.1 14.5 Q12 14.2 13.9 14.6 L14 19.4"/></symbol>
+      <symbol id="lf-i-user" viewBox="0 0 24 24"><path d="M12 5 Q15 5.2 15.1 8 Q15 11 12 11.1 Q9 11 9 8.1 Q9.2 5.3 12 5 Z M5 19.5 Q5.6 13.9 12 14 Q18.4 13.9 19 19.3"/></symbol>
+      <symbol id="lf-i-sliders" viewBox="0 0 24 24"><path d="M4 7 Q12 6.6 20 7 M4 12 Q12 11.7 20 12.2 M4 17 Q12 16.6 20 17 M9 5.2 Q10.7 5.4 10.7 7 Q10.6 8.7 9 8.8 Q7.3 8.7 7.3 7 Q7.4 5.4 9 5.2 Z M15 10.2 Q16.7 10.4 16.7 12 Q16.6 13.7 15 13.8 Q13.3 13.7 13.3 12 Q13.4 10.4 15 10.2 Z M8 15.2 Q9.7 15.4 9.7 17 Q9.6 18.7 8 18.8 Q6.3 18.7 6.3 17 Q6.4 15.4 8 15.2 Z"/></symbol>
+      <symbol id="lf-i-bell" viewBox="0 0 24 24"><path d="M12 4.5 Q16.9 5 17.1 10 Q17.2 14 18.8 16.4 Q12 17.4 5.3 16.6 Q6.9 14 6.9 9.9 Q7.1 5.2 12 4.5 Z M10.4 19 Q12 20.3 13.6 19"/></symbol>
+      <symbol id="lf-i-calendar" viewBox="0 0 24 24"><path d="M5 6.5 Q12 6 19 6.4 L19.2 19 Q12 19.6 4.9 19.1 Z M8 4.5 L8 8 M16 4.5 L16.1 8 M5.2 10.5 Q12 10.1 18.9 10.6"/></symbol>
+      <symbol id="lf-i-mail" viewBox="0 0 24 24"><path d="M4.5 7 Q12 6.5 19.5 7 L19.7 17.5 Q12 18.1 4.4 17.4 Z M5 7.5 Q11.8 13.5 12.2 13.4 L19 7.4"/></symbol>
+      <symbol id="lf-i-trash" viewBox="0 0 24 24"><path d="M6 7.5 L7 19 Q12 19.7 17 19.1 L17.9 7.4 M4.5 7 Q12 6.4 19.5 7.1 M9.5 6.8 Q9.7 4.4 12 4.5 Q14.4 4.5 14.4 6.7 M10 10.5 L10.2 16 M14 10.5 L13.9 16"/></symbol>
+      <symbol id="lf-i-edit" viewBox="0 0 24 24"><path d="M5 19 Q5.2 16.9 6 15.9 L16 5.6 Q17 4.8 18.3 6.1 Q19.4 7.4 18.4 8.3 L8.4 18.4 Q7.3 19.2 5 19 Z M14.5 7.2 L17 9.7"/></symbol>
+      <symbol id="lf-i-plus" viewBox="0 0 24 24"><path d="M12 5 Q11.8 12 12.2 19 M5 12 Q12 11.7 19 12.3"/></symbol>
+      <symbol id="lf-i-close" viewBox="0 0 24 24"><path d="M6 6 Q12 11.8 18.2 18.1 M18 6.2 Q12.2 12 5.9 18"/></symbol>
+      <symbol id="lf-i-check" viewBox="0 0 24 24"><path d="M5 13 Q8 15.5 9.8 17.5 Q13.4 10.5 19 6.5"/></symbol>
+      <symbol id="lf-i-arrow-right" viewBox="0 0 24 24"><path d="M4.5 12 Q12 11.7 19 12.1 M14 6.5 Q17.4 9.5 19.4 11.9 Q17 14.6 14.2 17.6"/></symbol>
+      <symbol id="lf-i-star" viewBox="0 0 24 24"><path d="M12 4.5 L14.3 9.4 L19.6 10 L15.7 13.6 L16.8 18.9 L12.1 16.2 L7.3 18.9 L8.4 13.5 L4.5 9.9 L9.8 9.3 Z"/></symbol>
+      <symbol id="lf-i-heart" viewBox="0 0 24 24"><path d="M12 19 Q5 14 4.6 9.5 Q4.8 5.6 8.3 5.5 Q11 5.6 12 8 Q13.1 5.5 15.8 5.5 Q19.3 5.7 19.4 9.4 Q19 14.1 12 19 Z"/></symbol>
+      <symbol id="lf-i-image" viewBox="0 0 24 24"><path d="M4.5 6 Q12 5.5 19.5 6.1 L19.6 18 Q12 18.6 4.4 18 Z M9 8.7 Q10.5 8.8 10.5 10.1 Q10.4 11.4 9 11.5 Q7.6 11.4 7.6 10.1 Q7.7 8.8 9 8.7 Z M5.5 16.5 Q9 12.6 11 14.5 Q14 10.2 18.6 16.2"/></symbol>
+      <symbol id="lf-i-chat" viewBox="0 0 24 24"><path d="M4.5 6.5 Q12 6 19.5 6.5 L19.4 14.5 Q13.9 15.2 9.5 14.9 L6 18.2 L6.2 14.7 Q4.7 14.5 4.5 14.4 Z"/></symbol>
+      <symbol id="lf-i-download" viewBox="0 0 24 24"><path d="M12 4.5 Q11.9 10 12.1 14.5 M8 11.5 Q10.3 13.7 12 15.6 Q14 13.4 16.1 11.4 M5 19 Q12 19.5 19 19"/></symbol>
+    </svg>
+    <div class="lf-card">
+      <p>lofi.css ships 19 built-in scribble icons as an inline SVG sprite — no icon font, no external files. Paste the sprite once, then reference by id. Icons inherit text color and size with the text:</p>
+      <p>Need more than these? The <a href="lofi-icons.html">full icon set</a> has all 1745 Lucide icons redrawn in the same scribble style — searchable, click-to-copy, or download the whole sprite as <a href="lofi-icons.svg" download>lofi-icons.svg</a>.</p>
+<pre><code>&lt;svg class="lf-icon"&gt;&lt;use href="#lf-i-search"/&gt;&lt;/svg&gt; Search</code></pre>
+      <div class="lf-row" style="gap:1.4em; font-size:.85rem; color:var(--lf-ink-soft)">
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-search"/></svg> search</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-menu"/></svg> menu</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-home"/></svg> home</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-user"/></svg> user</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-sliders"/></svg> sliders</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-bell"/></svg> bell</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-calendar"/></svg> calendar</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-mail"/></svg> mail</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-trash"/></svg> trash</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-edit"/></svg> edit</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-plus"/></svg> plus</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-close"/></svg> close</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-check"/></svg> check</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-arrow-right"/></svg> arrow</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-star"/></svg> star</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-heart"/></svg> heart</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-image"/></svg> image</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-chat"/></svg> chat</span>
+        <span><svg class="lf-icon lf-icon-lg"><use href="#lf-i-download"/></svg> download</span>
+      </div>
+      <br>
+      <p>In context: <button class="lf-btn lf-btn-primary"><svg class="lf-icon"><use href="#lf-i-plus"/></svg> New task</button> <button class="lf-btn"><svg class="lf-icon"><use href="#lf-i-download"/></svg> Export</button> <span class="lf-badge"><svg class="lf-icon"><use href="#lf-i-bell"/></svg> 3 alerts</span></p>
+      <p class="lf-muted">Full-set icons use the same ids (<code>lf-i-</code> + Lucide name) and markup — copy the <code>&lt;symbol&gt;</code> definitions you need into your inline sprite so the mockup stays a single file.</p>
+    </div>
+  </section>
+
+  <!-- ============ BADGES / ALERTS / PROGRESS ============ -->
+  <section class="demo-section">
+    <h2>Badges, alerts &amp; progress</h2>
+    <p>
+      <span class="lf-badge">default</span>
+      <span class="lf-badge lf-badge-accent">new</span>
+      <span class="lf-badge lf-badge-ok">done</span>
+      <span class="lf-badge lf-badge-danger">blocked</span>
+    </p>
+    <div class="lf-stack">
+      <div class="lf-alert lf-alert-info">Info alert — something worth knowing.</div>
+      <div class="lf-alert lf-alert-ok">✓ Success — it worked!</div>
+      <div class="lf-alert lf-alert-danger">✗ Error — something went wrong here.</div>
+    </div>
+    <br>
+    <div class="lf-progress"><span style="width:64%"></span></div>
+    <p class="lf-muted">64% — striped marker fill</p>
+  </section>
+
+  <!-- ============ TABLE ============ -->
+  <section class="demo-section">
+    <h2>Table</h2>
+    <table class="lf-table">
+      <thead>
+        <tr><th>Feature</th><th>Status</th><th>Owner</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Search</td><td><span class="lf-badge lf-badge-ok">done</span></td><td>Alex</td></tr>
+        <tr><td>Dark mode</td><td><span class="lf-badge lf-badge-accent">in progress</span></td><td>Team</td></tr>
+        <tr><td>CSV export</td><td><span class="lf-badge lf-badge-danger">blocked</span></td><td>—</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ NAV / TABS ============ -->
+  <section class="demo-section">
+    <h2>Nav &amp; tabs</h2>
+    <nav class="lf-nav">
+      <span class="brand">MyApp</span>
+      <a href="#">Home</a>
+      <a href="#">Docs</a>
+      <button class="lf-btn lf-btn-primary" style="font-size:.9rem">Sign up</button>
+    </nav>
+    <br>
+    <div class="lf-tabs">
+      <div class="lf-tab active">Overview</div>
+      <div class="lf-tab">Details</div>
+      <div class="lf-tab">Settings</div>
+    </div>
+    <div style="border:2.5px solid var(--lf-line); border-top:none; border-radius: 0 0 14px 18px / 0 0 18px 14px; padding:1em; background:var(--lf-paper)">
+      Tab panel content goes here.
+    </div>
+  </section>
+
+  <!-- ============ ANNOTATIONS ============ -->
+  <section class="demo-section">
+    <h2>Annotations</h2>
+    <p style="font-size:1.1rem">
+      The pricing lives <span class="lf-circled">right here</span>
+      <span class="lf-arrow">↖</span>
+      <span class="lf-comment">move this above the fold!</span>
+    </p>
+    <hr class="lf-hr">
+    <p class="lf-muted">↑ hand-drawn divider &nbsp;·&nbsp; ↓ wavy divider</p>
+    <hr class="lf-hr lf-hr-wavy">
+  </section>
+
+  <!-- ============ FULL SPEC COVERAGE ============ -->
+  <section class="demo-section">
+    <h2>Headings h4–h6</h2>
+    <div class="lf-card">
+      <h4>Heading four</h4>
+      <h5>Heading five</h5>
+      <h6>Heading six (muted)</h6>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Inline text semantics</h2>
+    <div class="lf-card">
+      <p><strong>strong</strong> · <b>b</b> · <em>em</em> · <i>i</i> · <u>u (wavy)</u> · <s>s</s> · <del>del</del> · <ins>ins</ins> · <mark>mark</mark> · <small>small</small></p>
+      <p>H<sub>2</sub>O (sub) · E=mc<sup>2</sup> (sup) · <abbr title="Hypertext Markup Language">HTML abbr</abbr> · <dfn>dfn term</dfn> · <q>q quotation</q> · <cite>cite — a work title</cite></p>
+      <p>Published <time datetime="2026-07-08">July 8, 2026</time> · value: <data value="42">forty-two</data> · <ruby>漢字<rt>kanji</rt></ruby> (ruby/rt) · <bdo dir="rtl">bdo reversed</bdo></p>
+      <address>address: 123 Main Street, Springfield</address>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Code family</h2>
+    <div class="lf-card">
+      <p>Inline <code>code</code>, program output <samp>samp: 404 Not Found</samp>, variable <var>x</var>, and keys: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd></p>
+<pre><code>// pre + code block
+function sketch(el) {
+  return el.rotate(-0.4);
+}</code></pre>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Lists</h2>
+    <div class="lf-row">
+      <div class="lf-col lf-card">
+        <h3>ul (nested)</h3>
+        <ul>
+          <li>Hand-drawn bullet</li>
+          <li>Another item
+            <ul>
+              <li>Nested level</li>
+              <li>Also nested</li>
+            </ul>
+          </li>
+          <li>Back to level one</li>
+        </ul>
+      </div>
+      <div class="lf-col lf-card">
+        <h3>ol</h3>
+        <ol>
+          <li>First step</li>
+          <li>Second step</li>
+          <li>Third step</li>
+        </ol>
+        <h3>menu</h3>
+        <menu>
+          <li><button class="lf-btn lf-btn-ghost" style="font-size:.85rem">Copy</button></li>
+          <li><button class="lf-btn lf-btn-ghost" style="font-size:.85rem">Paste</button></li>
+        </menu>
+      </div>
+      <div class="lf-col lf-card">
+        <h3>dl</h3>
+        <dl>
+          <dt>Wireframe</dt>
+          <dd>A low-fidelity sketch of a screen.</dd>
+          <dt>Mockup</dt>
+          <dd>A more detailed static design.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Quotes &amp; figures</h2>
+    <blockquote>
+      Good design is as little design as possible.
+      <footer>— <cite>Dieter Rams</cite></footer>
+    </blockquote>
+    <figure style="max-width:340px">
+      <svg viewBox="0 0 300 140" style="width:100%; border:2.5px solid var(--lf-line); border-radius:var(--lf-r2); background:var(--lf-fill)" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="0" x2="300" y2="140" stroke="#767676" stroke-width="2"/>
+        <line x1="300" y1="0" x2="0" y2="140" stroke="#767676" stroke-width="2"/>
+      </svg>
+      <figcaption>figure + figcaption: hero image goes here</figcaption>
+    </figure>
+    <hr>
+    <p class="lf-muted">↑ bare &lt;hr&gt; is styled automatically</p>
+  </section>
+
+  <section class="demo-section">
+    <h2>All input types</h2>
+    <fieldset>
+      <legend>fieldset + legend</legend>
+      <div class="lf-row">
+        <div class="lf-col lf-stack">
+          <div><label class="lf-label">text</label><input type="text" placeholder="text"></div>
+          <div><label class="lf-label">email</label><input type="email" placeholder="you@example.com"></div>
+          <div><label class="lf-label">password</label><input type="password" value="secret"></div>
+          <div><label class="lf-label">number</label><input type="number" value="42"></div>
+          <div><label class="lf-label">search</label><input type="search" placeholder="search…"></div>
+          <div><label class="lf-label">tel</label><input type="tel" placeholder="+49 30 …"></div>
+          <div><label class="lf-label">url</label><input type="url" placeholder="https://"></div>
+        </div>
+        <div class="lf-col lf-stack">
+          <div><label class="lf-label">date</label><input type="date"></div>
+          <div><label class="lf-label">time</label><input type="time"></div>
+          <div><label class="lf-label">datetime-local</label><input type="datetime-local"></div>
+          <div><label class="lf-label">month</label><input type="month"></div>
+          <div><label class="lf-label">week</label><input type="week"></div>
+          <div><label class="lf-label">datalist</label><input list="fruits" placeholder="type 'a'…"><datalist id="fruits"><option value="apple"><option value="apricot"><option value="avocado"></datalist></div>
+          <div><label class="lf-label">select + optgroup</label>
+            <select>
+              <optgroup label="Fruit"><option>Apple</option><option>Pear</option></optgroup>
+              <optgroup label="Veg"><option>Carrot</option></optgroup>
+            </select>
+          </div>
+        </div>
+        <div class="lf-col lf-stack">
+          <div><label class="lf-label">range</label><input type="range" min="0" max="100" value="60" oninput="this.parentNode.querySelector('output').value=this.value"> <output>60</output> <span class="lf-muted">← output</span></div>
+          <div><label class="lf-label">color</label><input type="color" value="#4d4d4d"></div>
+          <div><label class="lf-label">file</label><input type="file"></div>
+          <div><label class="lf-label">bare checkbox / radio</label>
+            <label><input type="checkbox" checked> native check</label> &nbsp;
+            <label><input type="radio" name="nr" checked> native radio</label>
+          </div>
+          <div><label class="lf-label">disabled state</label><input type="text" value="disabled" disabled></div>
+          <div><label class="lf-label">native progress</label><progress max="100" value="64"></progress></div>
+          <div><label class="lf-label">meter</label><meter min="0" max="100" low="30" high="70" optimum="90" value="55"></meter></div>
+        </div>
+      </div>
+    </fieldset>
+  </section>
+
+  <section class="demo-section">
+    <h2>details, summary &amp; dialog</h2>
+    <details>
+      <summary>Click to expand (details/summary)</summary>
+      <p>Collapsible content with a hand-drawn disclosure marker.</p>
+    </details>
+    <details open>
+      <summary>This one starts open</summary>
+      <p>Because it has the <code>open</code> attribute.</p>
+    </details>
+    <dialog open style="position:static; margin:1em 0; max-width:380px">
+      <h3>dialog element</h3>
+      <p>Shown inline here with <code>open</code>. Use <code>showModal()</code> for the real thing — <code>::backdrop</code> is styled too.</p>
+      <button class="lf-btn">Close</button>
+    </dialog>
+  </section>
+
+  <section class="demo-section">
+    <h2>Embedded content</h2>
+    <div class="lf-row">
+      <div class="lf-col">
+        <p class="lf-label">img (SVG data URI)</p>
+        <img alt="placeholder" width="200" height="110" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 110'%3E%3Crect width='200' height='110' fill='%23f0f0f0'/%3E%3Cpath d='M0 0 200 110 M200 0 0 110' stroke='%23767676' stroke-width='2'/%3E%3C/svg%3E">
+      </div>
+      <div class="lf-col">
+        <p class="lf-label">iframe (srcdoc)</p>
+        <iframe title="demo" width="200" height="110" srcdoc="&lt;link href='https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap' rel='stylesheet'&gt;&lt;body style=&quot;font-family:'Patrick Hand','Segoe Print','Comic Sans MS',cursive;background:#fafafa;color:#1f1f1f;margin:10px&quot;&gt;iframe content&lt;/body&gt;"></iframe>
+      </div>
+      <div class="lf-col">
+        <p class="lf-label">canvas / video / audio</p>
+        <canvas width="200" height="60"></canvas>
+        <audio controls style="margin-top:.5em"></audio>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Full table anatomy</h2>
+    <table class="lf-table">
+      <caption>caption: Q3 feature status</caption>
+      <colgroup><col style="width:45%"><col><col></colgroup>
+      <thead>
+        <tr><th scope="col">Feature</th><th scope="col">Effort</th><th scope="col">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Search</th><td>3</td><td>done</td></tr>
+        <tr><th scope="row">Dark mode</th><td>5</td><td>wip</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td>Total</td><td>8</td><td>—</td></tr>
+      </tfoot>
+    </table>
+    <p class="lf-muted" style="margin-top:.5em">caption, colgroup/col, thead, tbody with row headers, tfoot (double rule)</p>
+  </section>
+
+  <section class="demo-section">
+    <h2>Coverage notes</h2>
+    <div class="lf-note">Intentionally unstyled: non-rendering elements (<code>head</code>, <code>meta</code>, <code>script</code>, <code>template</code>, <code>slot</code>, <code>datalist</code> popup, <code>track</code>/<code>source</code>, <code>map</code>/<code>area</code>), pure wrappers (<code>div</code>, <code>span</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>aside</code>, <code>header</code>, <code>footer</code>, <code>picture</code>), and line-break controls (<code>br</code>, <code>wbr</code>). Obsolete elements (<code>marquee</code>, <code>center</code>, …) are out of scope.</div>
+  </section>
+
+  <!-- ============ FULL MOCKUP EXAMPLE ============ -->
+  <section class="demo-section">
+    <h2>Putting it together — mini mockup</h2>
+    <div class="lf-card lf-double" style="padding:0; overflow:hidden">
+      <nav class="lf-nav" style="padding:.6em 1em">
+        <span class="brand">Taskflow</span>
+        <a href="#">Projects</a>
+        <a href="#">Reports</a>
+        <span class="lf-avatar" style="width:36px;height:36px;font-size:1rem">AB</span>
+      </nav>
+      <div style="padding:1.2em">
+        <div class="lf-row">
+          <div class="lf-col">
+            <h3>This week <span class="lf-badge lf-badge-accent">3 open</span></h3>
+            <div class="lf-placeholder" style="min-height:80px">burndown chart</div>
+            <br>
+            <div class="lf-row">
+              <button class="lf-btn lf-btn-primary">New task</button>
+              <button class="lf-btn lf-btn-ghost">Filter</button>
+            </div>
+          </div>
+          <div class="lf-col">
+            <h3>Activity</h3>
+            <div class="lf-zone" style="min-height:120px">Recent activity feed goes here…</div>
+            <br>
+            <div class="lf-note">Note: overdue items get pulled to the top automatically</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <hr class="lf-hr-wavy lf-hr">
+    <p class="lf-muted">lofi.css · pure CSS lo-fi kit · fonts: Patrick Hand + Caveat (Google Fonts)</p>
+    <p class="lf-muted">Claude skill: <a href="lofi-mockups/SKILL.md">lofi-mockups/SKILL.md</a> · installable package: <a href="lofi-mockups.skill">lofi-mockups.skill</a><br>
+    Skill rules in short: strictly HTML + lofi.css + text · grayscale only · <strong>no emojis</strong> (typographic glyphs like ✓ ✗ → are fine) · no JS, no external assets.</p>
+    <p class="lf-muted">Created by Hannes Rössler, 2026 — with help from Claude Fable 5.<br>
+    <a href="https://github.com/hrr-amboss">GitHub</a> · <a href="https://www.linkedin.com/in/hannes-r%C3%B6ssler-50a406155/">LinkedIn</a></p>
+  </footer>
+
+</div>
+</body>
+</html>

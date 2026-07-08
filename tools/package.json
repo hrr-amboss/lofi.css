@@ -1,0 +1,12 @@
+{
+  "name": "lofi-tools",
+  "private": true,
+  "type": "module",
+  "description": "Build tools for lofi.css: regenerate the scribble icon sprite and gallery from Lucide.",
+  "scripts": {
+    "build-icons": "node scribblify.mjs && node generate-gallery.mjs && cp ../lofi-icons.svg ../lofi-mockups/assets/lofi-icons.svg"
+  },
+  "dependencies": {
+    "lucide-static": "^1.23.0"
+  }
+}

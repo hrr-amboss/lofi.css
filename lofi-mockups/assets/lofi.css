@@ -1,0 +1,725 @@
+/* ============================================================
+   lofi.css — hand-drawn / lo-fi wireframe kit
+   Created by Hannes Rössler, 2026 — with help from Claude Fable 5
+   https://github.com/hrr-amboss
+   https://www.linkedin.com/in/hannes-rössler-50a406155/
+
+   Excalidraw-style mockups in pure HTML+CSS. No JS, no deps
+   (except Google Fonts). Import fonts in your HTML <head>:
+
+   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+   Usage: wrap everything in <body class="lofi"> or a
+   <div class="lofi"> container. All components use .lf-* classes.
+   ============================================================ */
+
+/* ---------- 1. Tokens ---------- */
+.lofi {
+  /* Grayscale ramp — semantics carried by lightness, not hue */
+  --lf-paper: #fafafa;       /* gray-98: background */
+  --lf-ink: #1f1f1f;         /* gray-12: text */
+  --lf-ink-soft: #767676;    /* gray-46: muted text */
+  --lf-line: #333333;        /* gray-20: borders */
+  --lf-accent: #4d4d4d;      /* gray-30: primary emphasis (was blue) */
+  --lf-danger: #111111;      /* gray-07: strongest emphasis (was red) */
+  --lf-ok: #9e9e9e;          /* gray-62: de-emphasis / done (was green) */
+  --lf-highlight: #e0e0e0;   /* gray-88: text marker */
+  --lf-note: #ededed;        /* gray-93: sticky note */
+  --lf-fill: #f0f0f0;        /* gray-94: pencil shading */
+
+  /* Safety net: forces any emoji or embedded image to grayscale too.
+     Remove if you need position:fixed children (filter creates a
+     containing block). */
+  filter: grayscale(1);
+
+  /* Wobbly border shapes — cycle these for variety */
+  --lf-r1: 140px 12px 125px 12px / 12px 125px 12px 140px;
+  --lf-r2: 12px 125px 12px 140px / 140px 12px 125px 12px;
+  --lf-r3: 70px 8px 14px 105px / 16px 115px 115px 16px;
+  --lf-r4: 12px 140px 12px 125px / 125px 12px 140px 12px;
+
+  font-family: 'Patrick Hand', 'Segoe Print', 'Comic Sans MS', cursive;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--lf-ink);
+  background: var(--lf-paper);
+  /* faint paper grain */
+  background-image: radial-gradient(#00000006 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.lofi *, .lofi *::before, .lofi *::after { box-sizing: border-box; }
+
+/* ---------- 2. Typography ---------- */
+.lofi h1, .lofi h2, .lofi h3, .lofi .lf-title {
+  font-family: 'Caveat', 'Patrick Hand', cursive;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 .4em;
+  transform: rotate(-0.24deg);
+}
+.lofi h1 { font-size: 2.6rem; }
+.lofi h2 { font-size: 2rem; transform: rotate(0.18deg); }
+.lofi h3 { font-size: 1.5rem; }
+.lofi p { margin: 0 0 .8em; }
+.lofi small, .lofi .lf-muted { color: var(--lf-ink-soft); font-size: .85em; }
+
+.lofi a { color: var(--lf-accent); text-decoration: none; border-bottom: 2px dashed currentColor; }
+.lofi a:hover { border-bottom-style: solid; }
+
+/* marker highlight */
+.lofi mark, .lofi .lf-hl {
+  background: linear-gradient(104deg,
+    transparent 0.9%, var(--lf-highlight) 2.4%,
+    var(--lf-highlight) 96%, transparent 98%);
+  padding: 0 .25em;
+  border-radius: 4px 12px 6px 10px;
+}
+
+/* scribbled-out text */
+.lofi .lf-strike { position: relative; white-space: nowrap; }
+.lofi .lf-strike::after {
+  content: ''; position: absolute; left: -2%; right: -2%; top: 48%;
+  height: 3px; background: var(--lf-danger);
+  transform: rotate(-0.84deg); border-radius: 50%;
+}
+
+/* squiggly underline */
+.lofi .lf-underline {
+  text-decoration: underline wavy var(--lf-accent) 2px;
+  text-underline-offset: 5px;
+}
+
+/* ---------- 3. Wobble utilities ---------- */
+.lofi .lf-tilt-l { transform: rotate(-0.36deg); }
+.lofi .lf-tilt-r { transform: rotate(0.3deg); }
+
+/* Core sketchy border. Cycle radius by position so siblings differ. */
+.lofi .lf-border {
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r1);
+}
+.lofi .lf-border:nth-child(2n)  { border-radius: var(--lf-r2); }
+.lofi .lf-border:nth-child(3n)  { border-radius: var(--lf-r3); }
+.lofi .lf-border:nth-child(5n)  { border-radius: var(--lf-r4); }
+
+/* Double pen stroke (Excalidraw "sloppiness"): offset ghost border */
+.lofi .lf-double { position: relative; }
+.lofi .lf-double::before {
+  content: ''; position: absolute; inset: -1px;
+  border: 2px solid var(--lf-line);
+  border-radius: var(--lf-r2);
+  opacity: .35;
+  transform: rotate(0.21deg) translate(1.5px, -1px);
+  pointer-events: none;
+}
+
+/* ---------- 4. Buttons ---------- */
+.lofi .lf-btn {
+  display: inline-block;
+  font: inherit; font-size: 1rem;
+  color: var(--lf-ink);
+  background: var(--lf-paper);
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r1);
+  padding: .35em 1.1em;
+  cursor: pointer;
+  transform: rotate(-0.24deg);
+  transition: transform .08s ease, box-shadow .08s ease;
+  box-shadow: 2px 3px 0 #00000018;
+}
+.lofi .lf-btn:nth-of-type(2n) { border-radius: var(--lf-r3); transform: rotate(0.24deg); }
+.lofi .lf-btn:hover { transform: rotate(0deg) translateY(-1px); box-shadow: 3px 4px 0 #00000022; }
+.lofi .lf-btn:active { transform: translateY(1px); box-shadow: 1px 1px 0 #00000018; }
+
+.lofi .lf-btn-primary { background: var(--lf-accent); color: #fff; border-color: #2a2a2a; }
+.lofi .lf-btn-danger  { background: var(--lf-danger); color: #fff; border-color: #000; }
+.lofi .lf-btn-ghost   { border-style: dashed; box-shadow: none; }
+
+/* ---------- 5. Form elements ---------- */
+.lofi .lf-input, .lofi .lf-select, .lofi .lf-textarea {
+  font: inherit; font-size: 1rem;
+  color: var(--lf-ink);
+  background: #fff;
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r2);
+  padding: .35em .8em;
+  width: 100%;
+  max-width: 340px;
+  outline: none;
+}
+.lofi .lf-input:focus, .lofi .lf-textarea:focus, .lofi .lf-select:focus {
+  border-color: var(--lf-accent);
+  box-shadow: 2px 3px 0 #00000022;
+}
+.lofi .lf-textarea { min-height: 90px; border-radius: var(--lf-r3); resize: vertical; }
+.lofi .lf-label { display: block; margin-bottom: .2em; font-size: .95rem; color: var(--lf-ink-soft); }
+
+/* hand-drawn checkbox */
+.lofi .lf-check { display: inline-flex; align-items: center; gap: .5em; cursor: pointer; }
+.lofi .lf-check input { position: absolute; opacity: 0; }
+.lofi .lf-check .box {
+  width: 22px; height: 22px; flex: 0 0 auto;
+  border: 2.5px solid var(--lf-line);
+  border-radius: 5px 10px 6px 9px;
+  position: relative; background: #fff;
+  transform: rotate(-1.2deg);
+}
+.lofi .lf-check input:checked + .box::after {
+  content: '✓';
+  position: absolute; left: 2px; top: -8px;
+  font-size: 26px; color: var(--lf-ok);
+  transform: rotate(-6deg);
+}
+
+/* hand-drawn radio */
+.lofi .lf-radio { display: inline-flex; align-items: center; gap: .5em; cursor: pointer; }
+.lofi .lf-radio input { position: absolute; opacity: 0; }
+.lofi .lf-radio .dot {
+  width: 22px; height: 22px; flex: 0 0 auto;
+  border: 2.5px solid var(--lf-line);
+  border-radius: 48% 52% 55% 45% / 52% 46% 54% 48%;
+  position: relative; background: #fff;
+}
+.lofi .lf-radio input:checked + .dot::after {
+  content: ''; position: absolute; inset: 4px;
+  background: var(--lf-ink);
+  border-radius: 55% 45% 48% 52% / 45% 55% 52% 48%;
+  transform: rotate(8deg);
+}
+
+/* toggle switch */
+.lofi .lf-toggle { display: inline-flex; align-items: center; gap: .5em; cursor: pointer; }
+.lofi .lf-toggle input { position: absolute; opacity: 0; }
+.lofi .lf-toggle .track {
+  width: 52px; height: 28px; flex: 0 0 auto;
+  border: 2.5px solid var(--lf-line);
+  border-radius: 20px 24px 22px 26px / 22px 20px 26px 24px;
+  background: var(--lf-fill); position: relative;
+  transition: background .15s;
+}
+.lofi .lf-toggle .track::after {
+  content: ''; position: absolute; top: 1px; left: 2px;
+  width: 20px; height: 20px;
+  background: #fff; border: 2px solid var(--lf-line);
+  border-radius: 52% 48% 45% 55% / 48% 52% 55% 45%;
+  transition: left .15s;
+}
+.lofi .lf-toggle input:checked + .track { background: var(--lf-ok); }
+.lofi .lf-toggle input:checked + .track::after { left: 25px; }
+
+/* ---------- 6. Containers ---------- */
+.lofi .lf-card {
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r1);
+  background: #fff;
+  padding: 1em 1.2em;
+  box-shadow: 3px 4px 0 #00000014;
+  transform: rotate(-0.15deg);
+}
+.lofi .lf-card:nth-child(2n) { border-radius: var(--lf-r4); transform: rotate(0.18deg); }
+
+/* sticky note */
+.lofi .lf-note {
+  background: var(--lf-note);
+  border: none;
+  padding: .9em 1em;
+  border-radius: 2px 8px 4px 10px;
+  box-shadow: 2px 4px 8px #00000022;
+  transform: rotate(-0.72deg);
+  font-size: .95rem;
+}
+.lofi .lf-note:nth-child(2n) { transform: rotate(0.6deg); }
+
+/* dashed "drop zone" / region marker */
+.lofi .lf-zone {
+  border: 2.5px dashed var(--lf-ink-soft);
+  border-radius: var(--lf-r3);
+  padding: 1.4em; text-align: center;
+  color: var(--lf-ink-soft);
+  background: transparent;
+}
+
+/* image / chart placeholder with cross-hatch and X */
+.lofi .lf-placeholder {
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r2);
+  background:
+    repeating-linear-gradient(45deg, transparent 0 9px, #00000009 9px 10px),
+    var(--lf-fill);
+  position: relative;
+  min-height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lf-ink-soft);
+  overflow: hidden;
+}
+.lofi .lf-placeholder.lf-x::before,
+.lofi .lf-placeholder.lf-x::after {
+  content: ''; position: absolute; left: -8%; right: -8%; top: 50%;
+  height: 2px; background: var(--lf-ink-soft); opacity: .6;
+}
+.lofi .lf-placeholder.lf-x::before { transform: rotate(19deg); }
+.lofi .lf-placeholder.lf-x::after  { transform: rotate(-19deg); }
+
+/* avatar circle */
+.lofi .lf-avatar {
+  width: 48px; height: 48px;
+  border: 2.5px solid var(--lf-line);
+  border-radius: 48% 52% 55% 45% / 52% 46% 54% 48%;
+  background: var(--lf-fill);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.2rem;
+}
+
+/* ---------- 7. Badges, alerts, progress ---------- */
+.lofi .lf-badge {
+  display: inline-block;
+  font-size: .8rem; line-height: 1;
+  padding: .3em .7em;
+  border: 2px solid var(--lf-line);
+  border-radius: 12px 20px 14px 18px / 18px 14px 20px 12px;
+  background: #fff;
+  transform: rotate(-0.6deg);
+}
+.lofi .lf-badge-accent { background: var(--lf-accent); color: #fff; border-color: #2a2a2a; }
+.lofi .lf-badge-ok     { background: var(--lf-ok); color: #fff; border-color: #6e6e6e; }
+.lofi .lf-badge-danger { background: var(--lf-danger); color: #fff; border-color: #000; }
+
+.lofi .lf-alert {
+  border: 2.5px solid var(--lf-line);
+  border-left-width: 7px;
+  border-radius: var(--lf-r3);
+  padding: .7em 1em;
+  background: #fff;
+  transform: rotate(-0.12deg);
+}
+/* No hue available, so alerts differ by lightness + border style */
+.lofi .lf-alert-ok     { border-color: var(--lf-ok); background: #f7f7f7; }
+.lofi .lf-alert-danger { border-color: var(--lf-danger); background: #e9e9e9; border-left-style: double; border-left-width: 9px; }
+.lofi .lf-alert-info   { border-color: var(--lf-accent); background: #f2f2f2; border-left-style: dashed; }
+
+.lofi .lf-progress {
+  border: 2.5px solid var(--lf-line);
+  border-radius: 20px 26px 22px 24px / 24px 20px 26px 22px;
+  height: 22px; background: #fff; overflow: hidden;
+}
+.lofi .lf-progress > span {
+  display: block; height: 100%;
+  background: repeating-linear-gradient(-45deg,
+    var(--lf-accent) 0 8px, #8a8a8a 8px 16px);
+  border-right: 2px solid var(--lf-line);
+  border-radius: 0 12px 8px 0;
+}
+
+/* ---------- 8. Tables ---------- */
+.lofi .lf-table {
+  border-collapse: collapse; width: 100%;
+  font-size: .95rem;
+}
+.lofi .lf-table th, .lofi .lf-table td {
+  border: 2px solid var(--lf-line);
+  padding: .4em .8em; text-align: left;
+}
+.lofi .lf-table th {
+  font-family: 'Caveat', cursive; font-size: 1.2rem;
+  background: var(--lf-fill);
+}
+/* uneven "hand ruled" lines */
+.lofi .lf-table tr:nth-child(2n) td { border-top-style: dashed; }
+
+/* ---------- 9. Nav / tabs ---------- */
+.lofi .lf-nav {
+  display: flex; align-items: center; gap: 1.2em;
+  border-bottom: 3px solid var(--lf-line);
+  padding: .5em .2em;
+}
+.lofi .lf-nav .brand { font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.5rem; margin-right: auto; }
+
+.lofi .lf-tabs { display: flex; gap: .4em; border-bottom: 2.5px solid var(--lf-line); }
+.lofi .lf-tab {
+  padding: .3em 1em;
+  border: 2.5px solid var(--lf-line);
+  border-bottom: none;
+  border-radius: 14px 18px 0 0 / 20px 16px 0 0;
+  background: var(--lf-fill);
+  cursor: pointer;
+  transform: translateY(2.5px);
+  color: var(--lf-ink-soft);
+}
+.lofi .lf-tab.active {
+  background: var(--lf-paper);
+  color: var(--lf-ink);
+  border-bottom: 3px solid var(--lf-paper);
+  transform: translateY(2.5px) rotate(-0.3deg);
+}
+
+/* ---------- 10. Annotations ---------- */
+/* red circle around an element (like circling on paper) */
+.lofi .lf-circled { position: relative; display: inline-block; padding: .1em .4em; }
+.lofi .lf-circled::before {
+  content: ''; position: absolute; inset: -6px -10px;
+  border: 3px solid var(--lf-danger);
+  border-radius: 48% 52% 60% 40% / 55% 45% 58% 42%;
+  transform: rotate(-1.2deg);
+  pointer-events: none;
+}
+
+/* margin comment with hand arrow */
+.lofi .lf-comment {
+  font-family: 'Caveat', cursive;
+  font-size: 1.25rem;
+  color: var(--lf-danger);
+  transform: rotate(-1.2deg);
+  display: inline-block;
+}
+.lofi .lf-arrow { font-size: 1.6em; color: var(--lf-danger); display: inline-block; transform: rotate(8deg); }
+
+/* divider: hand-drawn horizontal line */
+.lofi .lf-hr {
+  border: none; height: 3px; margin: 1.5em 0;
+  background: var(--lf-line);
+  border-radius: 50%;
+  transform: rotate(-0.12deg) scaleY(.7);
+  opacity: .8;
+}
+.lofi .lf-hr-wavy {
+  height: 8px; background: none; opacity: 1; transform: none;
+  border-bottom: 3px solid var(--lf-line);
+  border-radius: 0;
+  --mask: radial-gradient(6px at 50% 8px, #000 99%, transparent 101%) 50% 0/16px 100%;
+  -webkit-mask: var(--mask); mask: var(--mask);
+}
+
+/* ---------- 11. Layout helpers ---------- */
+.lofi .lf-row { display: flex; gap: 1em; flex-wrap: wrap; align-items: flex-start; }
+.lofi .lf-col { flex: 1 1 220px; }
+.lofi .lf-stack > * + * { margin-top: .8em; }
+
+/* ============================================================
+   12. NATIVE ELEMENT COVERAGE
+   Bare HTML elements inside .lofi get the sketchy treatment
+   automatically — no classes needed. Full-spec coverage.
+   ============================================================ */
+
+/* ---------- 12.1 Headings 4–6 ---------- */
+.lofi h4, .lofi h5, .lofi h6 {
+  font-family: 'Caveat', cursive; font-weight: 700;
+  line-height: 1.15; margin: 0 0 .4em;
+}
+.lofi h4 { font-size: 1.3rem; transform: rotate(-0.18deg); }
+.lofi h5 { font-size: 1.15rem; transform: rotate(0.15deg); }
+.lofi h6 { font-size: 1rem; color: var(--lf-ink-soft); transform: rotate(-0.12deg); }
+
+/* ---------- 12.2 Inline text semantics ---------- */
+.lofi strong, .lofi b { font-weight: 700; }
+.lofi em, .lofi i, .lofi cite, .lofi q { font-style: italic; }
+.lofi u { text-decoration: underline wavy currentColor 1.5px; text-underline-offset: 4px; }
+.lofi s, .lofi del { text-decoration: line-through var(--lf-danger) 2.5px; }
+.lofi ins {
+  text-decoration: none;
+  background: linear-gradient(104deg,
+    transparent 0.9%, var(--lf-highlight) 2.4%,
+    var(--lf-highlight) 96%, transparent 98%);
+  padding: 0 .2em;
+}
+.lofi abbr[title] { text-decoration: underline dotted var(--lf-ink-soft) 2px; text-underline-offset: 4px; cursor: help; }
+.lofi dfn { font-style: italic; text-decoration: underline dotted currentColor 2px; text-underline-offset: 4px; }
+.lofi q { quotes: '\201C' '\201D' '\2018' '\2019'; }
+.lofi sub, .lofi sup { font-size: .65em; }
+.lofi time, .lofi data { border-bottom: 2px dotted var(--lf-ink-soft); }
+.lofi address { font-style: normal; color: var(--lf-ink-soft); }
+.lofi rt { font-size: .55em; font-family: 'Caveat', cursive; color: var(--lf-ink-soft); }
+.lofi ::selection { background: #d9d9d9; }
+.lofi :focus-visible { outline: 2.5px dashed var(--lf-accent); outline-offset: 3px; }
+.lofi :disabled { opacity: .45; cursor: not-allowed; }
+
+/* ---------- 12.3 Code family ---------- */
+.lofi code, .lofi samp {
+  font-family: ui-monospace, 'Cascadia Mono', 'SF Mono', Menlo, Consolas, monospace;
+  font-size: .78em;
+  background: var(--lf-fill);
+  border: 1.5px solid #00000014;
+  border-radius: 8px 14px 10px 12px;
+  padding: .1em .45em;
+}
+.lofi var {
+  font-family: 'Caveat', cursive; font-style: italic;
+  font-size: 1.1em; font-weight: 700;
+}
+.lofi kbd {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: .72em;
+  background: #fff;
+  border: 2px solid var(--lf-line);
+  border-bottom-width: 4px;
+  border-radius: 6px 10px 8px 9px;
+  padding: .15em .5em;
+  display: inline-block; transform: rotate(-0.6deg);
+}
+.lofi pre {
+  background: var(--lf-fill);
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r3);
+  padding: .9em 1.1em;
+  overflow: auto;
+  font-size: .85rem;
+  transform: rotate(-0.09deg);
+}
+.lofi pre code { background: none; border: none; padding: 0; font-size: inherit; }
+
+/* ---------- 12.4 Lists ---------- */
+.lofi ul, .lofi menu { list-style: none; padding-left: 1.5em; margin: 0 0 .8em; }
+.lofi ul > li, .lofi menu > li { position: relative; margin-bottom: .2em; }
+.lofi ul > li::before, .lofi menu > li::before {
+  content: ''; position: absolute; left: -1.15em; top: .5em;
+  width: 8px; height: 8px;
+  border: 2px solid var(--lf-ink);
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  transform: rotate(15deg);
+}
+.lofi ul ul > li::before { background: var(--lf-ink-soft); border-color: var(--lf-ink-soft); width: 6px; height: 6px; top: .55em; }
+
+.lofi ol { list-style: none; counter-reset: lf-ol; padding-left: 1.8em; margin: 0 0 .8em; }
+.lofi ol > li { position: relative; counter-increment: lf-ol; margin-bottom: .2em; }
+.lofi ol > li::before {
+  content: counter(lf-ol) ")";
+  position: absolute; left: -1.5em; top: -.15em;
+  font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.2em;
+  transform: rotate(-2.4deg);
+}
+
+.lofi dl { margin: 0 0 .8em; }
+.lofi dt { font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.3rem; transform: rotate(-0.24deg); }
+.lofi dd { margin: 0 0 .6em 1.1em; padding-left: .8em; border-left: 2.5px dashed var(--lf-ink-soft); }
+
+/* ---------- 12.5 Block quotes, figures, dividers ---------- */
+.lofi blockquote {
+  margin: .8em 0 1em; padding: .5em 1em .5em 1.4em;
+  border-left: 4px solid var(--lf-line);
+  border-radius: 3px 0 0 40px / 3px 0 0 90px;
+  font-style: italic;
+  position: relative;
+  transform: rotate(-0.18deg);
+}
+.lofi blockquote::before {
+  content: '\201C';
+  position: absolute; left: -.15em; top: -.35em;
+  font-family: 'Caveat', cursive; font-size: 2.6em;
+  color: var(--lf-ink-soft); opacity: .6;
+}
+.lofi blockquote footer, .lofi blockquote cite { font-style: normal; font-size: .85em; color: var(--lf-ink-soft); }
+
+.lofi figure { margin: 1.2em 0; }
+.lofi figcaption {
+  font-family: 'Caveat', cursive; font-size: 1.2rem;
+  color: var(--lf-ink-soft);
+  margin-top: .35em; transform: rotate(-0.36deg);
+}
+
+.lofi hr:not([class]) {
+  border: none; height: 3px; margin: 1.5em 0;
+  background: var(--lf-line); border-radius: 50%;
+  transform: rotate(-0.12deg) scaleY(.7); opacity: .8;
+}
+
+/* ---------- 12.6 Forms: bare elements ---------- */
+.lofi input:where(:not([type]), [type=text], [type=email], [type=password],
+    [type=number], [type=search], [type=tel], [type=url], [type=date],
+    [type=time], [type=datetime-local], [type=month], [type=week]),
+.lofi select, .lofi textarea {
+  font: inherit; font-size: 1rem;
+  color: var(--lf-ink);
+  background: #fff;
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r2);
+  padding: .35em .8em;
+  width: 100%; max-width: 340px;
+  outline: none;
+}
+.lofi input:focus, .lofi select:focus, .lofi textarea:focus {
+  border-color: var(--lf-accent);
+  box-shadow: 2px 3px 0 #00000022;
+}
+.lofi textarea { min-height: 90px; border-radius: var(--lf-r3); resize: vertical; }
+.lofi label { cursor: pointer; }
+
+/* bare checkbox / radio (the classed .lf-check/.lf-radio versions stay fancier) */
+.lofi input[type=checkbox], .lofi input[type=radio] {
+  width: 19px; height: 19px;
+  accent-color: #333;
+  transform: rotate(-1.8deg);
+}
+
+/* range slider */
+.lofi input[type=range] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; max-width: 340px; height: 28px;
+  background: transparent; border: none; padding: 0;
+}
+.lofi input[type=range]::-webkit-slider-runnable-track {
+  height: 5px; background: var(--lf-line); border-radius: 3px 6px 4px 5px;
+}
+.lofi input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; margin-top: -9px;
+  width: 22px; height: 22px;
+  background: #fff; border: 2.5px solid var(--lf-line);
+  border-radius: 55% 45% 48% 52% / 45% 55% 52% 48%;
+  cursor: grab;
+}
+.lofi input[type=range]::-moz-range-track {
+  height: 5px; background: var(--lf-line); border-radius: 3px;
+}
+.lofi input[type=range]::-moz-range-thumb {
+  width: 18px; height: 18px;
+  background: #fff; border: 2.5px solid var(--lf-line);
+  border-radius: 55% 45% 48% 52% / 45% 55% 52% 48%;
+  cursor: grab;
+}
+
+/* color picker */
+.lofi input[type=color] {
+  width: 54px; height: 36px; padding: 3px;
+  background: #fff;
+  border: 2.5px solid var(--lf-line);
+  border-radius: 10px 16px 12px 14px / 14px 12px 16px 10px;
+  cursor: pointer; max-width: none;
+}
+
+/* file input */
+.lofi input[type=file] { font: inherit; font-size: .95rem; border: none; background: none; padding: 0; max-width: 100%; }
+.lofi input[type=file]::file-selector-button {
+  font: inherit; font-size: .95rem;
+  color: var(--lf-ink); background: var(--lf-paper);
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r1);
+  padding: .3em 1em; margin-right: .8em;
+  cursor: pointer;
+  box-shadow: 2px 3px 0 #00000018;
+  transform: rotate(-0.24deg);
+}
+
+/* fieldset + legend */
+.lofi fieldset {
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r3);
+  padding: .8em 1.1em; margin: 0 0 1em;
+  min-width: 0;
+}
+.lofi legend {
+  font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.4rem;
+  padding: 0 .45em; transform: rotate(-0.6deg);
+}
+
+/* output */
+.lofi output { font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.35em; }
+
+/* native <progress> */
+.lofi progress {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; max-width: 340px; height: 20px;
+  border: 2.5px solid var(--lf-line);
+  border-radius: 20px 26px 22px 24px / 24px 20px 26px 22px;
+  background: #fff; overflow: hidden;
+}
+.lofi progress::-webkit-progress-bar { background: #fff; }
+.lofi progress::-webkit-progress-value {
+  background: repeating-linear-gradient(-45deg, var(--lf-accent) 0 8px, #8a8a8a 8px 16px);
+  border-right: 2px solid var(--lf-line);
+}
+.lofi progress::-moz-progress-bar {
+  background: repeating-linear-gradient(-45deg, var(--lf-accent) 0 8px, #8a8a8a 8px 16px);
+  border-right: 2px solid var(--lf-line);
+}
+
+/* native <meter> — value shown as dotted "pencil" fill */
+.lofi meter {
+  -webkit-appearance: none; appearance: none;
+  width: 200px; height: 20px;
+  border: 2.5px solid var(--lf-line);
+  border-radius: 20px 26px 22px 24px / 24px 20px 26px 22px;
+  background: #fff; overflow: hidden;
+}
+.lofi meter::-webkit-meter-bar { background: #fff; border: none; height: 100%; border-radius: 0; }
+.lofi meter::-webkit-meter-optimum-value,
+.lofi meter::-webkit-meter-suboptimum-value,
+.lofi meter::-webkit-meter-even-less-good-value {
+  background: radial-gradient(#4d4d4d 1.6px, transparent 1.7px) 0 0 / 7px 7px, #c9c9c9;
+  border-right: 2px solid var(--lf-line);
+}
+.lofi meter::-moz-meter-bar {
+  background: radial-gradient(#4d4d4d 1.6px, transparent 1.7px) 0 0 / 7px 7px, #c9c9c9;
+  border-right: 2px solid var(--lf-line);
+}
+
+/* ---------- 12.7 Interactive: details, summary, dialog ---------- */
+.lofi details {
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r3);
+  background: #fff;
+  padding: .5em 1em;
+  margin: 0 0 .8em;
+  transform: rotate(-0.12deg);
+}
+.lofi summary {
+  cursor: pointer;
+  font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.35rem;
+  list-style: none;
+  position: relative; padding-left: 1.2em;
+}
+.lofi summary::-webkit-details-marker { display: none; }
+.lofi summary::before {
+  content: '\25B8'; position: absolute; left: 0; top: .02em;
+  transition: transform .15s; display: inline-block;
+}
+.lofi details[open] > summary::before { transform: rotate(90deg); }
+.lofi details[open] > summary { margin-bottom: .4em; }
+
+.lofi dialog {
+  border: 3px solid var(--lf-line);
+  border-radius: var(--lf-r1);
+  background: #fff;
+  padding: 1.1em 1.4em;
+  box-shadow: 5px 7px 0 #00000020;
+  transform: rotate(-0.24deg);
+  color: var(--lf-ink);
+}
+.lofi dialog::backdrop { background: #00000045; }
+
+/* ---------- 12.8 Embedded content ---------- */
+.lofi img, .lofi video, .lofi iframe, .lofi embed, .lofi object, .lofi canvas {
+  border: 2.5px solid var(--lf-line);
+  border-radius: var(--lf-r2);
+  max-width: 100%;
+  background: var(--lf-fill);
+}
+.lofi audio { width: 100%; max-width: 340px; }
+
+/* ---------- 12.9 Table anatomy ---------- */
+.lofi caption {
+  font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.4rem;
+  text-align: left; margin-bottom: .25em;
+  transform: rotate(-0.3deg);
+  caption-side: top;
+}
+.lofi tfoot th, .lofi tfoot td {
+  border-top: 3px double var(--lf-line) !important;
+  background: var(--lf-fill);
+  font-family: 'Caveat', cursive; font-size: 1.15rem;
+}
+
+/* ---------- 13. Icons ---------- */
+/* For use with the lofi inline SVG sprite (see library page or
+   skill references/icons.md). Usage:
+   <svg class="lf-icon"><use href="#lf-i-search"/></svg>
+   Sized relative to surrounding text; inherits currentColor. */
+.lofi .lf-icon {
+  width: 1.25em; height: 1.25em;
+  vertical-align: -0.28em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: inline-block;
+}
+.lofi .lf-icon-lg { width: 1.9em; height: 1.9em; vertical-align: -0.5em; }
