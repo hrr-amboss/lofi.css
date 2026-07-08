@@ -1,11 +1,11 @@
-// build-site.mjs — assemble the static site into dist/ for hosting
-// (e.g. drag the dist/ folder onto https://app.netlify.com/drop).
+// build-site.mjs — assemble the static site into netlify-drop/ for hosting
+// (drag the netlify-drop/ folder onto https://app.netlify.com/drop).
 // Usage (from tools/): node build-site.mjs
 
 import { cpSync, rmSync, mkdirSync } from 'node:fs';
 
 const REPO = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
-const DIST = REPO + '/dist';
+const DIST = REPO + '/netlify-drop';
 
 const FILES = [
   'index.html',
@@ -22,4 +22,4 @@ const FILES = [
 rmSync(DIST, { recursive: true, force: true });
 mkdirSync(DIST);
 for (const f of FILES) cpSync(`${REPO}/${f}`, `${DIST}/${f}`, { recursive: true });
-console.log(`dist/ ready (${FILES.length} entries) — drag it onto https://app.netlify.com/drop`);
+console.log(`netlify-drop/ ready (${FILES.length} entries) — drag it onto https://app.netlify.com/drop`);

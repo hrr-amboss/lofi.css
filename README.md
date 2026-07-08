@@ -80,14 +80,14 @@ npm run build-icons   # rewrites lofi-icons.svg, lofi-icons.html, and the skill 
 
 ## Deploying the demo site
 
-Everything is static. To publish (e.g. [Netlify Drop](https://app.netlify.com/drop)):
+Everything is static. A ready-to-upload copy of the site lives in [`netlify-drop/`](netlify-drop) — drag that folder onto [Netlify Drop](https://app.netlify.com/drop) and you're live. The site root redirects to the component library (which includes the full icon selector at the bottom); the example mockup is at `/example.html`, the standalone icon gallery at `/lofi-icons.html`.
+
+After changing any source file, refresh the folder with:
 
 ```sh
 cd tools
-npm run build-site   # assembles the site into dist/
+npm run build-site   # reassembles netlify-drop/
 ```
-
-Then drag the `dist/` folder onto Netlify Drop. The site root redirects to the component library; the example mockup is at `/example.html`, the icon gallery at `/lofi-icons.html`.
 
 ## Claude skill
 
@@ -104,7 +104,8 @@ lofi-icons.html        searchable icon gallery (click to copy)
 icons.md               icon usage reference
 lofi-mockups/          Claude skill source (SKILL.md + assets + references)
 lofi-mockups.skill     packaged skill (zip)
-tools/                 icon-set generator (Lucide → scribble)
+netlify-drop/          ready-to-upload static site (drag onto Netlify Drop)
+tools/                 icon-set generator (Lucide → scribble) + site build
 ```
 
 ## License & credits

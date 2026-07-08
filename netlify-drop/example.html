@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup — Brewlog subscription flow (lofi.css example)</title>
+<link rel="stylesheet" href="lofi.css?v=0.2">
+</head>
+<body class="lofi">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="lf-i-coffee" viewBox="0 0 24 24"><path d="M10 1.87Q10.28 3.16 10.07 4.11 M14.03 2.07L13.96 3.93 M15.81 8.14A1 1 0 0 1 17.02 9.07Q17.55 13.04 17.17 17.01Q16.93 18.57 15.93 20Q14.56 21.01 12.83 21.07Q10.19 21.35 7.04 20.98Q5.26 20.97 4.14 19.66Q2.95 18.69 3.18 16.94Q2.46 12.8 3.1 8.84A1 1 0 0 1 4.08 7.96Q11.67 8.89 17.8 8Q20.21 7.99 21.5 10.11Q22.68 12.03 21.41 14.13Q20.34 16.06 17.95 15.96L16.94 16.07 M5.9 2.08L6.14 3.99"/></symbol>
+  <symbol id="lf-i-package" viewBox="0 0 24 24"><path d="M11.05 21.86A2 2 0 0 0 12.92 21.78Q17.29 20.16 20.14 17.68A2 2 0 0 0 21.03 15.95Q21.66 11.73 20.82 8.16A2 2 0 0 0 19.91 6.37Q15.73 4.68 13.02 2.36A2 2 0 0 0 11 2.36Q7.76 3.86 4.13 6.4A2 2 0 0 0 3.05 7.92Q2.6 12.12 3.11 15.89A2 2 0 0 0 4.07 17.78Q7.01 20.16 11.05 21.86Z M12.03 22.08Q11.17 16.38 12.07 12.05 M3.4 7.13Q7.51 10.17 12.02 12.08Q16.57 8.56 20.8 7.07 M7.5 4.35Q11.71 7.34 16.52 9.51"/></symbol>
+  <symbol id="lf-i-truck" viewBox="0 0 24 24"><path d="M13.95 17.9Q14.9 11.64 13.92 5.85A2 2 0 0 0 12.02 3.92Q8.1 3.47 4.14 4.09A2 2 0 0 0 2.04 6.02Q2.87 12.3 1.94 17.1A1 1 0 0 0 2.92 18.01L5.09 17.94 M15.14 18.03Q11.68 17.42 9.09 17.8 M19.1 17.8L21.05 17.82A1 1 0 0 0 21.9 17.01Q22.4 15.34 22.19 13.51A1 1 0 0 0 21.71 12.7Q20.16 9.88 18.45 8.18A1 1 0 0 0 17.54 7.97Q15.41 7.64 13.88 8.09 M16.83 15.94Q18.94 15.82 19.11 17.87Q19 19.89 17.13 19.97Q15.04 20.16 15.1 18.13Q14.93 15.99 16.83 15.94Z M6.85 15.85Q8.87 16 8.82 18.07Q9.03 19.89 6.99 20.19Q5.15 20.01 5.13 17.89Q4.87 16.12 6.85 15.85Z"/></symbol>
+  <symbol id="lf-i-bell" viewBox="0 0 24 24"><path d="M10.47 20.81A2 2 0 0 0 13.71 20.99 M3.43 15.25A1 1 0 0 0 4.08 17.09Q13.24 18.06 20.08 16.8A1 1 0 0 0 20.64 15.3C19.37 13.98 17.75 12.35 17.82 7.84Q18.1 4.54 14.86 2.98Q12.1 1.11 9.02 2.81Q6.07 4.65 5.85 7.88C5.82 12.31 4.68 14 3.26 15.34"/></symbol>
+  <symbol id="lf-i-plus" viewBox="0 0 24 24"><path d="M4.96 11.93Q12.97 12.78 18.82 12.09 M12.13 4.97Q12.87 11.61 12.06 18.81"/></symbol>
+  <symbol id="lf-i-download" viewBox="0 0 24 24"><path d="M11.84 15.02Q11.11 8.51 12 2.95 M20.86 15.16Q20.7 16.94 21.08 18.92A2 2 0 0 1 19.03 21.04Q11.87 19.85 5.01 20.93A2 2 0 0 1 2.97 19.08Q3.48 17.12 3.12 15.05 M7.2 10.14Q8.8 12.73 11.81 14.93Q14.69 13.17 17.07 9.95"/></symbol>
+  <symbol id="lf-i-arrow-right" viewBox="0 0 24 24"><path d="M5.05 12.01Q12.17 12.51 19.06 11.85 M12.17 5Q15.18 9.31 18.89 12.07Q15.65 16.22 11.9 18.94"/></symbol>
+  <symbol id="lf-i-credit-card" viewBox="0 0 24 24"><path d="M3.93 5.17Q12.39 6 20.1 5.04Q21.96 5.03 22.06 7.07Q21.53 12.6 22 17.2Q22.06 19.01 20.06 19.06Q13.03 19.61 4.18 18.84Q2.07 19.06 2.19 17.01Q1.12 11.64 1.86 6.87Q2.06 4.96 3.93 5.17Z M2.05 9.89Q10.57 9.42 22.14 9.96"/></symbol>
+  <symbol id="lf-i-repeat" viewBox="0 0 24 24"><path d="M16.93 1.94Q18.96 3.4 20.9 6.15Q18.85 7.59 16.93 10.11 M2.99 11.11L2.93 10.08Q2.95 8.3 4.18 7.22Q5.43 5.9 7.09 6.1Q13.56 6.59 21.08 5.92 M7.1 22.03Q4.62 20.45 2.95 18.17Q5.25 16.49 7.09 13.98 M20.84 13.14L20.92 14Q20.91 15.72 19.92 16.7Q18.7 18.04 16.87 17.96Q9.37 17.26 3.05 17.95"/></symbol>
+  <symbol id="lf-i-pause" viewBox="0 0 24 24"><path d="M15.05 2.88Q16.38 3.26 17.85 3.06Q19.06 2.99 19.01 4.19Q18.07 12.63 19 19.82Q18.96 21.07 17.88 20.99Q16.29 20.64 14.98 21.16Q13.97 20.99 13.97 20.12Q14.82 11.57 13.94 3.83Q13.95 3.06 15.05 2.88Z M5.98 3.07Q7.53 3.53 8.96 3.03Q10.02 2.97 9.84 4.14Q10.91 11.33 9.86 19.84Q9.97 21.03 9.02 20.98Q7.72 21.39 6.18 21Q4.92 21.05 5.03 20.04Q5.5 11.49 4.95 3.8Q4.98 2.96 5.98 3.07Z"/></symbol>
+  <symbol id="lf-i-chart-line" viewBox="0 0 24 24"><path d="M3 3.13Q2.22 12.08 3.04 18.9A2 2 0 0 0 4.97 21.03Q13.81 21.93 20.8 20.9 M19.09 9.05Q16.53 12.22 13.95 14.15Q11.88 12.72 10.16 10.16Q8.44 11.16 7.15 13.05"/></symbol>
+  <symbol id="lf-i-check" viewBox="0 0 24 24"><path d="M20.03 5.82Q13.59 10.98 8.87 17.14Q6.92 14.18 4.06 11.81"/></symbol>
+</svg>
+
+<div style="max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem;">
+
+  <h1>Brewlog — subscription flow</h1>
+  <p class="lf-muted">Example mockup built with <a href="lofi-library.html">lofi.css</a>. Two screens, one flow: dashboard → manage subscription. Everything below is plain HTML + one stylesheet — no JavaScript, no images, no external requests.</p>
+
+  <p style="margin-top:1.4em"><span class="lf-comment" style="font-size:1.3rem">Screen 1 — the dashboard a subscriber lands on</span></p>
+
+  <!-- ============ SCREEN 1: DASHBOARD ============ -->
+  <div class="lf-card lf-double" style="padding:0; overflow:hidden">
+    <nav class="lf-nav" style="padding:.6em 1em">
+      <span class="brand"><svg class="lf-icon"><use href="#lf-i-coffee"/></svg> Brewlog</span>
+      <a href="#">Orders</a>
+      <a href="#">Beans</a>
+      <a href="#">Reports</a>
+      <svg class="lf-icon lf-icon-lg" style="margin-left:auto"><use href="#lf-i-bell"/></svg>
+      <span class="lf-avatar" style="width:36px;height:36px;font-size:1rem">AK</span>
+    </nav>
+
+    <div style="padding:1.2em 1.4em 1.6em">
+      <h2 style="margin-top:.2em">Good morning, Ana <span class="lf-badge lf-badge-ok"><svg class="lf-icon"><use href="#lf-i-check"/></svg> subscription active</span></h2>
+
+      <div class="lf-row">
+        <div class="lf-col lf-card">
+          <h3><svg class="lf-icon"><use href="#lf-i-truck"/></svg> Next delivery</h3>
+          <p style="font-size:1.3rem; margin:.2em 0">Thu, July 16</p>
+          <p class="lf-muted" style="margin:0">250 g · Kiamugumo AA · whole beans</p>
+          <br>
+          <button class="lf-btn lf-btn-primary">Manage <svg class="lf-icon"><use href="#lf-i-arrow-right"/></svg></button>
+        </div>
+        <div class="lf-col lf-card">
+          <h3><svg class="lf-icon"><use href="#lf-i-coffee"/></svg> Beans this month</h3>
+          <div class="lf-progress"><span style="width:70%"></span></div>
+          <p class="lf-muted" style="margin:.5em 0 0">350 g of 500 g used — on track</p>
+          <br>
+          <span class="lf-badge lf-badge-accent">2 cups / day avg</span>
+        </div>
+        <div class="lf-col">
+          <div class="lf-note">Open question: do we show cups-per-day here, or is that creepy? Ask beta group.</div>
+          <br>
+          <div class="lf-zone" style="min-height:70px"><svg class="lf-icon"><use href="#lf-i-chart-line"/></svg> consumption sparkline goes here</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:1.4em">Recent orders
+        <span class="lf-circled" style="margin-left:.6em">Reorder</span>
+        <span class="lf-arrow">←</span>
+        <span class="lf-comment">one-click reorder is the whole point of this table</span>
+      </h3>
+      <table class="lf-table">
+        <thead>
+          <tr><th>Order</th><th>Roast</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><svg class="lf-icon"><use href="#lf-i-package"/></svg> #1042 · Kiamugumo AA</td>
+            <td>Light</td>
+            <td><span class="lf-badge lf-badge-accent">shipped</span></td>
+            <td><button class="lf-btn lf-btn-ghost" style="font-size:.85rem"><svg class="lf-icon"><use href="#lf-i-repeat"/></svg> Reorder</button></td>
+          </tr>
+          <tr>
+            <td><svg class="lf-icon"><use href="#lf-i-package"/></svg> #1036 · La Soledad</td>
+            <td>Medium</td>
+            <td><span class="lf-badge lf-badge-ok">delivered</span></td>
+            <td><button class="lf-btn lf-btn-ghost" style="font-size:.85rem"><svg class="lf-icon"><use href="#lf-i-repeat"/></svg> Reorder</button></td>
+          </tr>
+          <tr>
+            <td><svg class="lf-icon"><use href="#lf-i-package"/></svg> #1029 · Duromina</td>
+            <td>Dark</td>
+            <td><span class="lf-badge lf-badge-danger">payment failed</span></td>
+            <td><button class="lf-btn" style="font-size:.85rem"><svg class="lf-icon"><use href="#lf-i-credit-card"/></svg> Retry</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+      <div class="lf-row">
+        <button class="lf-btn lf-btn-primary"><svg class="lf-icon"><use href="#lf-i-plus"/></svg> New one-off order</button>
+        <button class="lf-btn"><svg class="lf-icon"><use href="#lf-i-download"/></svg> Export history</button>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center; margin:1.6em 0">
+    <span class="lf-comment" style="font-size:1.3rem">"Manage" opens the subscription editor ↓</span>
+  </p>
+
+  <!-- ============ SCREEN 2: MANAGE SUBSCRIPTION ============ -->
+  <div class="lf-card lf-double" style="padding:0; overflow:hidden">
+    <nav class="lf-nav" style="padding:.6em 1em">
+      <span class="brand"><svg class="lf-icon"><use href="#lf-i-coffee"/></svg> Brewlog</span>
+      <span class="lf-muted">/ Manage subscription</span>
+    </nav>
+
+    <div style="padding:1.2em 1.4em 1.6em">
+      <div class="lf-row">
+        <div class="lf-col lf-stack" style="flex:2">
+          <div>
+            <label class="lf-label" for="beans">Beans</label>
+            <select class="lf-select" id="beans">
+              <option>Kiamugumo AA — Kenya, light</option>
+              <option>La Soledad — Guatemala, medium</option>
+              <option>Duromina — Ethiopia, dark</option>
+            </select>
+          </div>
+          <div>
+            <span class="lf-label">Grind</span>
+            <div class="lf-row">
+              <label class="lf-radio"><input type="radio" name="grind" checked><span class="dot"></span> Whole beans</label>
+              <label class="lf-radio"><input type="radio" name="grind"><span class="dot"></span> Filter</label>
+              <label class="lf-radio"><input type="radio" name="grind"><span class="dot"></span> Espresso</label>
+            </div>
+          </div>
+          <div>
+            <span class="lf-label">Every</span>
+            <div class="lf-row">
+              <label class="lf-check"><input type="checkbox"><span class="box"></span> 1 week</label>
+              <label class="lf-check"><input type="checkbox" checked><span class="box"></span> 2 weeks</label>
+              <label class="lf-check"><input type="checkbox"><span class="box"></span> 4 weeks</label>
+            </div>
+            <p class="lf-muted" style="margin:.3em 0 0"><small>should be radios, not checkboxes — placeholder until pricing per interval is decided</small></p>
+          </div>
+          <div>
+            <label class="lf-toggle"><input type="checkbox"><span class="track"></span> <svg class="lf-icon"><use href="#lf-i-pause"/></svg> Skip the next delivery</label>
+          </div>
+          <div>
+            <label class="lf-label" for="note">Note for the roaster</label>
+            <textarea class="lf-textarea" id="note" placeholder="Grind a touch coarser than last time..."></textarea>
+          </div>
+          <div class="lf-row">
+            <button class="lf-btn lf-btn-primary"><svg class="lf-icon"><use href="#lf-i-check"/></svg> Save changes</button>
+            <button class="lf-btn lf-btn-ghost">Cancel</button>
+            <button class="lf-btn lf-btn-danger" style="margin-left:auto">Cancel subscription</button>
+          </div>
+        </div>
+        <div class="lf-col">
+          <div class="lf-note">TODO: confirm with billing — does changing the interval mid-cycle prorate, or start next cycle?</div>
+          <br>
+          <div class="lf-alert lf-alert-info">Changes apply from the <mark>July 16</mark> delivery onward.</div>
+          <br>
+          <div class="lf-placeholder lf-x" style="min-height:110px">bag photo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="margin-top:2.5rem">
+    <hr class="lf-hr lf-hr-wavy">
+    <p class="lf-muted">Made with <a href="lofi-library.html">lofi.css</a> — a tiny hand-drawn wireframe kit. Icons from the <a href="lofi-icons.html">scribble icon set</a> (1,745 icons, derived from Lucide). <a href="https://github.com/hrr-amboss/lofi.css">Source on GitHub</a>.</p>
+  </footer>
+
+</div>
+</body>
+</html>
